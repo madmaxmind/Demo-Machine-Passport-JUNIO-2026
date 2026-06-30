@@ -1,0 +1,1191 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>GMD Machine Passport™ · PRN-001</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Barlow:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+/* ════════════════════════════
+   TOKENS GMD
+════════════════════════════ */
+:root{
+  --dark:#0C0C0C;
+  --dark2:#141414;
+  --dark3:#1C1C1C;
+  --dark4:#242424;
+  --border:#2A2A2A;
+  --border2:#333;
+  --white:#F0EDE8;
+  --mid:#999;
+  --dim:#555;
+  --gold:#D4A745;
+  --gold-dim:#8A6B2A;
+  --green:#1D9E75;
+  --green-dim:#0D4D38;
+  --red:#C0392B;
+  --yellow:#E8A020;
+  --blue:#3A7BD5;
+  --mono:'JetBrains Mono',monospace;
+  --font-h:'Barlow Condensed',sans-serif;
+  --font-b:'Barlow',sans-serif;
+  --r:6px;
+  --r-lg:10px;
+  --pad:20px;
+}
+@media(max-width:600px){:root{--pad:14px}}
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--font-b);background:var(--dark);color:var(--white);font-size:13px;font-weight:300;min-height:100vh;overflow-x:hidden}
+button,input,select,textarea{font:inherit;border:none;background:none;cursor:pointer}
+ul{list-style:none}
+img{display:block;max-width:100%}
+
+/* ── TOP BAR ── */
+.top-bar{height:3px;background:linear-gradient(90deg,var(--gold) 0%,#E8C56A 50%,transparent 100%)}
+
+/* ── HEADER ── */
+.site-header{
+  background:var(--dark2);border-bottom:1px solid var(--border);
+  padding:0 var(--pad);display:flex;align-items:stretch;gap:0;
+}
+.header-logo{
+  padding:14px 20px 14px 0;border-right:1px solid var(--border);
+  display:flex;flex-direction:column;justify-content:center;gap:3px;flex-shrink:0;
+}
+.logo-gmd{font-family:var(--font-h);font-weight:800;font-size:18px;letter-spacing:.15em;color:var(--white);line-height:1}
+.logo-sub{font-size:8px;letter-spacing:.15em;text-transform:uppercase;color:var(--dim)}
+.logo-gold{color:var(--gold)}
+
+.header-machine{padding:14px var(--pad);flex:1;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.machine-id{font-family:var(--mono);font-size:11px;color:var(--gold);letter-spacing:.08em;margin-bottom:3px}
+.machine-name{font-family:var(--font-h);font-weight:700;font-size:18px;color:var(--white);letter-spacing:.04em;text-transform:uppercase}
+.machine-loc{font-size:11px;color:var(--mid);margin-top:2px}
+
+.status-pill{margin-left:auto;display:flex;flex-direction:column;align-items:flex-end;gap:4px;flex-shrink:0}
+.status-badge{display:inline-flex;align-items:center;gap:6px;padding:5px 12px;border-radius:3px;font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase}
+.status-ok{background:#0D2E1F;border:1px solid var(--green-dim);color:var(--green)}
+.status-warn{background:#2E1A00;border:1px solid #5A3500;color:var(--yellow)}
+.status-dot{width:6px;height:6px;border-radius:50%;background:currentColor;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+.uptime-val{font-family:var(--mono);font-size:10px;color:var(--dim)}
+
+/* ── TABS ── */
+.tabs-bar{
+  background:var(--dark2);border-bottom:1px solid var(--border);
+  display:flex;overflow-x:auto;-webkit-overflow-scrolling:touch;
+  scrollbar-width:none;padding:0 var(--pad);
+  position:sticky;top:0;z-index:90;
+}
+.tabs-bar::-webkit-scrollbar{display:none}
+.tab-btn{
+  padding:12px 16px;font-size:11px;font-weight:500;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--dim);border-bottom:2px solid transparent;
+  white-space:nowrap;flex-shrink:0;display:flex;align-items:center;gap:5px;
+  transition:color .2s,border-color .2s;
+}
+.tab-btn:hover{color:var(--mid)}
+.tab-btn.active{color:var(--gold);border-bottom-color:var(--gold)}
+
+/* ── HERO ── */
+.product-hero{
+  background:var(--dark2);border-bottom:1px solid var(--border);
+  padding:20px var(--pad);
+  display:grid;grid-template-columns:1fr 280px;gap:20px;align-items:center;
+  position:relative;overflow:hidden;
+}
+.product-hero::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse at 80% 50%,rgba(212,167,69,.08) 0%,transparent 60%);
+  pointer-events:none;
+}
+@media(max-width:680px){
+  .product-hero{grid-template-columns:1fr;gap:14px}
+  .hero-photo-col{order:-1}
+}
+.hero-text{position:relative;z-index:1}
+.hero-eyebrow{font-size:9px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:5px}
+.hero-name{font-family:var(--font-h);font-size:clamp(1.5rem,4vw,2.4rem);font-weight:800;color:var(--white);line-height:1;margin-bottom:6px}
+.hero-ref{font-size:10px;color:var(--dim);letter-spacing:.1em;font-family:var(--mono)}
+
+.hero-photo-col{position:relative;z-index:1}
+.hero-photo-wrap{
+  width:100%;aspect-ratio:4/3;border-radius:var(--r-lg);overflow:hidden;
+  background:var(--dark3);border:1px solid var(--border2);cursor:pointer;position:relative;
+}
+.hero-photo-wrap img{width:100%;height:100%;object-fit:cover;transition:transform .4s}
+.hero-photo-wrap:hover img{transform:scale(1.04)}
+.hero-photo-placeholder{
+  width:100%;height:100%;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;gap:8px;
+  background:linear-gradient(135deg,rgba(212,167,69,.05),rgba(12,12,12,.3));
+}
+.ph-icon{font-size:clamp(28px,5vw,42px);opacity:.4}
+.ph-text{font-size:11px;color:var(--dim);letter-spacing:.06em;text-align:center;line-height:1.5}
+.hero-photo-overlay{
+  position:absolute;inset:0;background:rgba(12,12,12,.6);
+  display:flex;align-items:center;justify-content:center;flex-direction:column;gap:6px;
+  opacity:0;transition:opacity .25s;
+}
+.hero-photo-wrap:hover .hero-photo-overlay{opacity:1}
+.hero-photo-overlay span{color:var(--white);font-size:12px;font-weight:600;letter-spacing:.04em}
+
+/* ── CONTENT ── */
+.content{padding:20px var(--pad);max-width:1100px;margin:0 auto}
+.tab-panel{display:none;animation:fadeUp .25s ease both}
+.tab-panel.active{display:block}
+@keyframes fadeUp{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+
+/* ── CARDS ── */
+.card{background:var(--dark2);border:1px solid var(--border);border-radius:var(--r-lg);overflow:hidden}
+.card-header{padding:10px 14px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
+.card-title{font-size:9px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--gold)}
+.card-body{padding:14px}
+
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+@media(max-width:680px){.grid-2,.grid-3{grid-template-columns:1fr}}
+.mt-14{margin-top:14px}
+
+/* ── DATA ROWS ── */
+.data-row{display:flex;justify-content:space-between;align-items:baseline;padding:7px 0;border-bottom:1px solid var(--border)}
+.data-row:last-child{border-bottom:none}
+.data-label{font-size:11px;color:var(--mid)}
+.data-val{font-family:var(--mono);font-size:11px;color:var(--white);text-align:right}
+
+/* ── STAT CARDS ── */
+.stat-card{background:var(--dark3);border:1px solid var(--border);border-radius:var(--r);padding:14px;text-align:center}
+.stat-val{font-family:var(--font-h);font-weight:800;font-size:28px;color:var(--white);line-height:1;margin-bottom:4px}
+.stat-label{font-size:10px;color:var(--mid);letter-spacing:.05em}
+
+/* ── ALERT BANNER ── */
+.alert-banner{display:flex;align-items:center;gap:10px;padding:10px 14px;border-radius:var(--r);margin-bottom:14px;font-size:12px}
+.alert-warn{background:#2E1A00;border:1px solid #5A3500;color:var(--yellow)}
+.alert-ok{background:#0D2E1F;border:1px solid var(--green-dim);color:var(--green)}
+
+/* ── TAGS ── */
+.tag{display:inline-block;padding:2px 7px;border-radius:3px;font-size:9px;font-weight:600;letter-spacing:.08em;text-transform:uppercase}
+.tag-pm{background:#0D2E20;color:var(--green);border:1px solid #1A5038}
+.tag-cm{background:#2E1000;color:#E07030;border:1px solid #5A2800}
+.tag-insp{background:#0D1E3A;color:var(--blue);border:1px solid #1A3060}
+.tag-cal{background:#2A1A30;color:#A060D0;border:1px solid #4A2A5A}
+.tag-ok{background:#0D2E1F;color:var(--green)}
+.tag-pend{background:#2E1A00;color:var(--yellow)}
+.tag-venc{background:#2E0D0D;color:var(--red)}
+
+/* ── HOTSPOTS ── */
+.hotspot-wrap{position:relative;border-radius:var(--r-lg);overflow:hidden;background:var(--dark3);border:1px solid var(--border)}
+.hotspot-img{width:100%;min-height:220px;display:flex;align-items:center;justify-content:center;position:relative;background:linear-gradient(135deg,#1a1208,#0c0c0c)}
+.hotspot-img img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0}
+.hotspot{
+  position:absolute;width:26px;height:26px;border-radius:50%;
+  background:var(--gold);border:2px solid var(--dark);
+  box-shadow:0 0 0 3px rgba(212,167,69,.35);
+  cursor:pointer;display:flex;align-items:center;justify-content:center;
+  font-size:10px;font-weight:800;color:var(--dark);
+  transition:transform .2s;z-index:5;animation:hpulse 2.5s infinite;
+}
+.hotspot:hover{transform:scale(1.2)}
+@keyframes hpulse{0%,100%{box-shadow:0 0 0 3px rgba(212,167,69,.35)}50%{box-shadow:0 0 0 7px rgba(212,167,69,.1)}}
+.hotspot-tooltip{
+  position:absolute;background:var(--dark);color:var(--white);
+  padding:7px 11px;border-radius:var(--r);font-size:11px;line-height:1.5;
+  white-space:normal;max-width:200px;pointer-events:none;
+  opacity:0;transition:opacity .2s;z-index:10;
+  box-shadow:0 8px 24px rgba(0,0,0,.6);border:1px solid var(--border2);
+}
+.hotspot-tooltip strong{display:block;font-size:12px;margin-bottom:2px;color:var(--gold)}
+.hotspot:hover + .hotspot-tooltip,
+.hotspot.open + .hotspot-tooltip{opacity:1}
+.ht-right{left:34px;top:-4px}
+.ht-left{right:34px;top:-4px}
+.ht-top{bottom:34px;left:50%;transform:translateX(-50%)}
+.ht-bottom{top:34px;left:50%;transform:translateX(-50%)}
+.hotspot-legend{padding:12px 14px;display:flex;flex-direction:column;gap:7px;border-top:1px solid var(--border)}
+.legend-item{display:flex;align-items:flex-start;gap:9px;font-size:12px;line-height:1.5}
+.legend-num{width:20px;height:20px;border-radius:50%;background:var(--gold);color:var(--dark);font-size:9px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.legend-text{color:var(--mid)}
+.legend-text strong{color:var(--white);display:block;font-size:12px}
+
+/* ── BULLETS ── */
+.bullets-list{display:flex;flex-direction:column;gap:9px}
+.bullet-item{display:flex;align-items:flex-start;gap:10px;padding:10px 12px;border-radius:var(--r);background:var(--dark3);border:1px solid var(--border);transition:border-color .2s}
+.bullet-item:hover{border-color:var(--gold-dim)}
+.bullet-marker{width:20px;height:20px;border-radius:50%;flex-shrink:0;background:rgba(212,167,69,.12);display:flex;align-items:center;justify-content:center;font-size:10px;color:var(--gold);font-weight:700;margin-top:1px}
+.bullet-text{font-size:12px;line-height:1.6;color:var(--mid)}
+.bullet-text strong{color:var(--white);font-weight:500}
+
+/* ── SPEC TABLE ── */
+.spec-table{width:100%;border-collapse:collapse}
+.spec-table tr{border-bottom:1px solid var(--border)}
+.spec-table tr:last-child{border-bottom:none}
+.spec-table td{padding:8px 10px;font-size:12px;vertical-align:top}
+.spec-table td:first-child{font-weight:500;color:var(--mid);font-size:11px;letter-spacing:.04em;width:44%}
+
+/* ── MAINT TABLE ── */
+.maint-table{width:100%;border-collapse:collapse}
+.maint-table th{text-align:left;font-size:9px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);padding:8px 10px;border-bottom:1px solid var(--border)}
+.maint-table td{padding:10px;border-bottom:1px solid var(--border);font-size:11px;color:var(--white);vertical-align:top}
+.maint-table tr:last-child td{border-bottom:none}
+.maint-table tr:hover td{background:var(--dark3)}
+
+/* ── MAINT TIMELINE ── */
+.maint-item{display:flex;gap:12px;padding-bottom:16px;position:relative}
+.maint-item:last-child{padding-bottom:0}
+.maint-dot-col{display:flex;flex-direction:column;align-items:center;flex-shrink:0;width:30px}
+.maint-dot{width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;border:2px solid;flex-shrink:0;font-family:var(--mono)}
+.maint-line{flex:1;width:2px;background:var(--border);margin:3px 0}
+.maint-item:last-child .maint-line{display:none}
+.maint-content{flex:1;padding-top:3px}
+.maint-header{display:flex;align-items:center;gap:8px;margin-bottom:4px;flex-wrap:wrap}
+.maint-period{font-family:var(--font-h);font-size:13px;font-weight:700;color:var(--white)}
+.maint-badge{font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:2px 7px;border-radius:3px}
+.badge-ok{background:#0D2E1F;color:var(--green);border:1px solid var(--green-dim)}
+.badge-warn{background:#2E1A00;color:var(--yellow);border:1px solid #5A3500}
+.badge-info{background:#0D1E3A;color:var(--blue);border:1px solid #1A3060}
+.badge-crit{background:#2E0D0D;color:var(--red);border:1px solid #5A1A1A}
+.maint-desc{font-size:11px;color:var(--mid);line-height:1.6;margin-bottom:5px}
+.maint-steps{display:flex;flex-direction:column;gap:3px}
+.maint-step{display:flex;align-items:center;gap:6px;font-size:11px;color:var(--white)}
+.maint-step::before{content:'→';color:var(--gold);font-weight:700;font-size:10px}
+
+/* ── UPCOMING ── */
+.upcoming-item{display:flex;align-items:flex-start;gap:12px;padding:12px 0;border-bottom:1px solid var(--border)}
+.upcoming-item:last-child{border-bottom:none}
+.upcoming-days{flex-shrink:0;width:48px;height:48px;border-radius:var(--r);display:flex;flex-direction:column;align-items:center;justify-content:center}
+.days-warn{background:#2E1A00;border:1px solid #5A3500;color:var(--yellow)}
+.days-ok{background:#0D2E1F;border:1px solid var(--green-dim);color:var(--green)}
+.d-num{font-family:var(--font-h);font-weight:800;font-size:20px;line-height:1}
+.d-unit{font-size:8px;letter-spacing:.06em;text-transform:uppercase;opacity:.7}
+.upcoming-info{}
+.upcoming-title{font-size:12px;font-weight:500;color:var(--white);margin-bottom:4px}
+.upcoming-detail{font-size:11px;color:var(--mid);line-height:1.6}
+
+/* ── CRITICIDAD ── */
+.comp-item{margin-bottom:12px}
+.comp-item:last-child{margin-bottom:0}
+.crit-bar-wrap{display:flex;flex-direction:column;gap:5px}
+.crit-label{display:flex;justify-content:space-between;font-size:11px}
+.crit-name{color:var(--white)}
+.crit-pct{font-family:var(--mono);font-size:10px}
+.crit-bar{height:5px;background:var(--dark4);border-radius:3px;overflow:hidden}
+.crit-fill{height:100%;border-radius:3px;transition:width .8s ease}
+
+/* ── MANUALES ── */
+.manual-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:12px}
+.manual-card{
+  background:var(--dark2);border:1px solid var(--border);border-radius:var(--r-lg);
+  padding:14px;display:flex;flex-direction:column;align-items:center;gap:7px;text-align:center;
+  transition:border-color .2s,transform .2s;cursor:pointer;
+}
+.manual-card:hover{border-color:var(--gold-dim);transform:translateY(-2px)}
+.manual-icon{width:40px;height:48px;display:flex;align-items:center;justify-content:center;font-size:28px;position:relative}
+.manual-type{position:absolute;bottom:-2px;right:-4px;font-size:7px;font-weight:800;padding:2px 4px;border-radius:3px;background:var(--gold);color:var(--dark)}
+.manual-name{font-size:11px;font-weight:500;color:var(--white);line-height:1.4}
+.manual-meta{font-size:10px;color:var(--dim)}
+.manual-dl{width:100%;padding:5px;border-radius:4px;background:var(--dark3);border:1px solid var(--border2);color:var(--gold);font-size:10px;font-weight:500;letter-spacing:.04em;text-align:center;transition:background .2s}
+.manual-dl:hover{background:var(--dark4)}
+
+/* ── VISOR 3D ── */
+.viewer-wrap{background:var(--dark2);border:1px solid var(--border);border-radius:var(--r-lg);overflow:hidden}
+.viewer-toolbar{background:var(--dark3);padding:10px 16px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;border-bottom:1px solid var(--border)}
+.viewer-title{font-family:var(--mono);font-size:11px;color:var(--gold);margin-right:auto;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:220px}
+.viewer-btn{padding:4px 10px;border-radius:4px;font-size:10px;font-weight:500;background:var(--dark4);color:var(--mid);border:1px solid var(--border2);transition:color .2s,border-color .2s}
+.viewer-btn:hover{color:var(--white);border-color:var(--gold-dim)}
+#stl-canvas{width:100%;height:min(420px,58vw);background:radial-gradient(ellipse at center,#181208,#0c0c0c);display:flex;align-items:center;justify-content:center;position:relative;cursor:grab}
+#stl-canvas:active{cursor:grabbing}
+#stl-canvas canvas{position:absolute;inset:0;width:100%!important;height:100%!important}
+.viewer-hint{position:absolute;bottom:12px;right:12px;font-size:9px;color:rgba(255,255,255,.3);display:flex;gap:8px}
+.viewer-info{background:var(--dark);padding:9px 16px;display:flex;gap:16px;flex-wrap:wrap;border-top:1px solid var(--border)}
+.vinfo-item{font-size:10px;color:var(--dim)}
+.vinfo-item strong{color:var(--mid);font-weight:500;display:block;font-size:11px}
+
+/* ── FORM ── */
+.form-section{margin-bottom:20px}
+.form-section-title{font-family:var(--font-h);font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:11px;padding-bottom:8px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:7px}
+.form-section-title::before{content:'';width:3px;height:11px;background:var(--gold);border-radius:2px}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:560px){.form-grid{grid-template-columns:1fr}}
+.field{display:flex;flex-direction:column;gap:4px}
+.field label{font-size:10px;font-weight:600;color:var(--dim);letter-spacing:.06em;text-transform:uppercase}
+.field input,.field select,.field textarea{padding:9px 11px;border-radius:var(--r);border:1px solid var(--border2);background:var(--dark3);font-size:12px;color:var(--white);transition:border-color .2s;outline:none}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--gold-dim)}
+.field select option{background:var(--dark3);color:var(--white)}
+.field textarea{min-height:80px;resize:vertical}
+.field.full{grid-column:1/-1}
+.drop-area{border:2px dashed var(--border2);border-radius:var(--r-lg);padding:22px;text-align:center;cursor:pointer;background:var(--dark3);transition:border-color .2s}
+.drop-area:hover{border-color:var(--gold-dim)}
+.drop-area-icon{font-size:26px;margin-bottom:6px}
+.drop-area-text{font-size:11px;color:var(--dim);line-height:1.6}
+.drop-area-text strong{color:var(--gold)}
+.btn-primary{padding:9px 22px;border-radius:var(--r);background:var(--gold);color:var(--dark);font-size:12px;font-weight:700;letter-spacing:.06em;transition:opacity .2s}
+.btn-primary:hover{opacity:.85}
+.btn-ghost{padding:9px 16px;border-radius:var(--r);border:1px solid var(--border2);color:var(--dim);font-size:12px;transition:color .2s,border-color .2s}
+.btn-ghost:hover{color:var(--white);border-color:var(--mid)}
+.form-actions{display:flex;gap:10px;justify-content:flex-end;padding-top:14px;border-top:1px solid var(--border);flex-wrap:wrap}
+
+/* ── CONTACTOS ── */
+.contact-card{display:flex;align-items:flex-start;gap:12px;padding:12px 14px;background:var(--dark3);border:1px solid var(--border);border-radius:var(--r)}
+.contact-icon{width:36px;height:36px;border-radius:var(--r);background:var(--dark4);border:1px solid var(--border2);display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
+.contact-name{font-size:12px;font-weight:500;color:var(--white);margin-bottom:2px}
+.contact-role{font-size:10px;color:var(--mid);margin-bottom:2px}
+.contact-info{font-family:var(--mono);font-size:10px;color:var(--dim)}
+
+/* ── LINE MAP ── */
+.line-map{display:flex;align-items:center;gap:10px;padding:16px;overflow-x:auto;flex-wrap:wrap}
+.line-node{display:flex;flex-direction:column;align-items:center;gap:4px}
+.line-node-box{width:110px;padding:10px 8px;border-radius:var(--r);border:1px solid var(--border2);background:var(--dark3);text-align:center;cursor:pointer;transition:border-color .2s}
+.line-node-box:hover{border-color:var(--gold-dim)}
+.node-active{border-color:var(--gold)!important;background:#1A1508}
+.node-icon{font-size:20px;margin-bottom:4px}
+.node-id{font-family:var(--mono);font-size:9px;color:var(--gold);margin-bottom:2px}
+.node-name{font-size:10px;color:var(--mid);line-height:1.3}
+.line-arrow{font-size:18px;color:var(--border2);flex-shrink:0}
+.you-are{font-size:8px;color:var(--gold);letter-spacing:.08em;text-transform:uppercase}
+
+/* ── QR BADGE ── */
+.qr-badge{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;background:var(--dark4);border:1px solid var(--border2);border-radius:4px;font-family:var(--mono);font-size:10px;color:var(--mid)}
+
+/* ── SECTION TITLE ── */
+.section-title{font-size:9px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:12px;margin-top:20px}
+.section-title:first-child{margin-top:0}
+
+/* ── FOOTER ── */
+.page-footer{border-top:1px solid var(--border);padding:12px var(--pad);display:flex;align-items:center;justify-content:space-between;background:var(--dark2);margin-top:30px;flex-wrap:wrap;gap:6px}
+.footer-gmd{font-size:10px;color:var(--dim)}
+.footer-gmd strong{color:var(--gold);font-weight:500}
+.footer-ts{font-family:var(--mono);font-size:9px;color:var(--dim)}
+
+/* ── TOAST ── */
+.success-toast{display:none;position:fixed;bottom:24px;right:24px;z-index:999;background:var(--dark2);color:var(--white);padding:12px 20px;border-radius:var(--r-lg);border-left:4px solid var(--green);box-shadow:0 8px 32px rgba(0,0,0,.5);font-size:12px;font-weight:500;max-width:calc(100vw - 48px)}
+
+@media(max-width:600px){
+  .grid-2,.grid-3{grid-template-columns:1fr}
+  .header-machine{flex-wrap:wrap}
+  .status-pill{width:100%;align-items:flex-start}
+}
+</style>
+</head>
+<body>
+
+<div class="top-bar"></div>
+
+<!-- HEADER -->
+<div class="site-header">
+  <div class="header-logo">
+    <div class="logo-gmd">GMD <span class="logo-gold">·</span></div>
+    <div class="logo-sub">Machine Passport™</div>
+  </div>
+  <div class="header-machine">
+    <div>
+      <div class="machine-id">DEMO-PRN-001 &nbsp;·&nbsp; S/N: MST-2018-SLP-7721</div>
+      <div class="machine-name">Prensa Mecánica Excéntrica</div>
+      <div class="machine-loc">📍 Planta Demo &nbsp;·&nbsp; Área Troquelado &nbsp;·&nbsp; Est. T-01</div>
+    </div>
+    <div class="status-pill">
+      <div class="status-badge status-warn">
+        <div class="status-dot"></div>
+        Intervención próxima
+      </div>
+      <div class="uptime-val">Actualizado: Jun 2026</div>
+    </div>
+  </div>
+</div>
+
+<!-- TABS -->
+<nav class="tabs-bar">
+  <button class="tab-btn active" data-tab="descripcion">📋 Descripción</button>
+  <button class="tab-btn" data-tab="mantenimiento">🔧 Mantenimiento</button>
+  <button class="tab-btn" data-tab="proximos">📅 Próximas</button>
+  <button class="tab-btn" data-tab="criticos">⚠ Críticos</button>
+  <button class="tab-btn" data-tab="manuales">📁 Manuales</button>
+  <button class="tab-btn" data-tab="visor3d">🧊 Visor 3D</button>
+  <button class="tab-btn" data-tab="contactos">📞 Contactos</button>
+  <button class="tab-btn" data-tab="agregar">＋ Agregar</button>
+</nav>
+
+<!-- HERO -->
+<div class="product-hero">
+  <div class="hero-text">
+    <p class="hero-eyebrow">Equipo de producción · Troquelado</p>
+    <h1 class="hero-name">Prensa Mecánica<br>315 Toneladas</h1>
+    <p class="hero-ref">DEMO-PRN-001 &nbsp;·&nbsp; Minster E2-315</p>
+  </div>
+  <div class="hero-photo-col">
+    <div class="hero-photo-wrap" onclick="document.getElementById('heroImgInput').click()" title="Toca para subir foto del equipo">
+      <div class="hero-photo-placeholder" id="heroPlaceholder">
+        <div class="ph-icon">📷</div>
+        <div class="ph-text">Toca para subir<br>foto del equipo</div>
+      </div>
+      <img id="heroImg" src="" alt="Foto del equipo" style="display:none"/>
+      <div class="hero-photo-overlay">
+        <span style="font-size:20px">📷</span>
+        <span>Cambiar foto</span>
+      </div>
+      <input type="file" id="heroImgInput" accept="image/*" style="display:none"/>
+    </div>
+  </div>
+</div>
+
+<!-- CONTENIDO -->
+<div class="content">
+
+  <!-- ══ DESCRIPCIÓN ══ -->
+  <div class="tab-panel active" id="tab-descripcion">
+
+    <div class="alert-banner alert-warn">
+      ⚠ Inspección de embrague/freno programada en <strong>23 días</strong> — coordinar ventana de paro con producción.
+    </div>
+
+    <div class="grid-3" style="margin-bottom:14px">
+      <div class="stat-card">
+        <div class="stat-val">315</div>
+        <div class="stat-label">Toneladas · Capacidad nominal</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-val">45</div>
+        <div class="stat-label">SPM · Golpes por minuto</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-val" style="color:var(--green)">98.2%</div>
+        <div class="stat-label">Disponibilidad últimos 30 días</div>
+      </div>
+    </div>
+
+    <div class="grid-2">
+
+      <!-- Características -->
+      <div class="card">
+        <div class="card-header"><div class="card-title">Características principales</div></div>
+        <div class="card-body">
+          <ul class="bullets-list">
+            <li class="bullet-item">
+              <div class="bullet-marker">01</div>
+              <div class="bullet-text"><strong>Estructura monobloque de fundición</strong> — Bastidor rígido con alta rigidez torsional. Diseñado para operación continua en turnos de producción 24/7.</div>
+            </li>
+            <li class="bullet-item">
+              <div class="bullet-marker">02</div>
+              <div class="bullet-text"><strong>Sistema embrague/freno integrado</strong> — Control neumático con categoría de seguridad 4 según ISO 13849. Tiempo de respuesta &lt; 30ms.</div>
+            </li>
+            <li class="bullet-item">
+              <div class="bullet-marker">03</div>
+              <div class="bullet-text"><strong>Velocidad variable 20–60 SPM</strong> — Selector de velocidad con control electrónico. Optimizable por tipo de material y espesor de la pieza.</div>
+            </li>
+            <li class="bullet-item">
+              <div class="bullet-marker">04</div>
+              <div class="bullet-text"><strong>Sistema hidráulico de sobrecarga</strong> — Protección automática a 350 ton. Previene daño a herramental por sobrecarga accidental.</div>
+            </li>
+            <li class="bullet-item">
+              <div class="bullet-marker">05</div>
+              <div class="bullet-text"><strong>Sistema de seguridad dual</strong> — Cortinas de luz SICK C4000 + control bimanual Cat. 4. Certificación IATF vigente.</div>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Hotspots + Specs -->
+      <div style="display:flex;flex-direction:column;gap:14px">
+
+        <div class="card" style="padding:0;overflow:hidden">
+          <div class="card-header"><div class="card-title">Puntos de interés técnico</div></div>
+          <div class="hotspot-wrap">
+            <div class="hotspot-img" id="hotspotImg" style="min-height:200px">
+              <span id="hotspotEmoji" style="font-size:60px;opacity:.3">🏗</span>
+              <img id="hotspotBg" src="" style="display:none;position:absolute;inset:0;width:100%;height:100%;object-fit:cover"/>
+
+              <div class="hotspot" style="top:25%;left:20%" onclick="toggleHotspot(this)">1
+                <div class="hotspot-tooltip ht-right"><strong>Embrague / Freno</strong>Neumático Cat.4 · Componente más crítico del equipo</div>
+              </div>
+              <div class="hotspot" style="top:50%;left:68%" onclick="toggleHotspot(this)">2
+                <div class="hotspot-tooltip ht-left"><strong>Sistema Hidráulico</strong>180 bar · ISO VG 46 · 120 L</div>
+              </div>
+              <div class="hotspot" style="top:72%;left:40%" onclick="toggleHotspot(this)">3
+                <div class="hotspot-tooltip ht-top"><strong>Mesa de trabajo</strong>1,500 × 1,200 mm · Carrera 250 mm</div>
+              </div>
+              <div class="hotspot" style="top:18%;left:58%" onclick="toggleHotspot(this)">4
+                <div class="hotspot-tooltip ht-bottom"><strong>Cortinas de seguridad</strong>SICK C4000 · 2 niveles · Cert. Jun 2026</div>
+              </div>
+            </div>
+            <div class="hotspot-legend">
+              <div class="legend-item"><div class="legend-num">1</div><div class="legend-text"><strong>Embrague / Freno</strong>Neumático · Cat. 4 · ISO 13849</div></div>
+              <div class="legend-item"><div class="legend-num">2</div><div class="legend-text"><strong>Sistema Hidráulico</strong>180 bar · Vol. 120 L</div></div>
+              <div class="legend-item"><div class="legend-num">3</div><div class="legend-text"><strong>Mesa de trabajo</strong>1,500 × 1,200 mm · H. paso 460 mm</div></div>
+              <div class="legend-item"><div class="legend-num">4</div><div class="legend-text"><strong>Cortinas de seguridad</strong>SICK C4000 · 2 niveles</div></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header"><div class="card-title">Especificaciones técnicas</div></div>
+          <div class="card-body" style="padding:0">
+            <table class="spec-table">
+              <tr><td>Tipo</td><td>Prensa mecánica excéntrica</td></tr>
+              <tr><td>Fabricante</td><td>Minster Machine Co.</td></tr>
+              <tr><td>Modelo</td><td>Minster E2-315</td></tr>
+              <tr><td>Capacidad nominal</td><td>315 ton</td></tr>
+              <tr><td>Golpes/min</td><td>20 – 60 SPM</td></tr>
+              <tr><td>Carrera (stroke)</td><td>250 mm</td></tr>
+              <tr><td>Área de mesa</td><td>1,500 × 1,200 mm</td></tr>
+              <tr><td>Altura de paso</td><td>460 mm</td></tr>
+              <tr><td>Potencia motor</td><td>30 HP / 22 kW</td></tr>
+              <tr><td>Tensión</td><td>480 V / 60 Hz / 3F</td></tr>
+              <tr><td>Año fabricación</td><td>2018</td></tr>
+              <tr><td>Peso equipo</td><td>42,500 kg</td></tr>
+            </table>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Identificación + Sistemas -->
+    <div class="grid-2 mt-14">
+      <div class="card">
+        <div class="card-header"><div class="card-title">Identificación del activo</div></div>
+        <div class="card-body" style="padding:0">
+          <table class="spec-table">
+            <tr><td>ID activo</td><td style="font-family:var(--mono);color:var(--gold)">DEMO-PRN-001</td></tr>
+            <tr><td>Número de serie</td><td style="font-family:var(--mono)">MST-2018-SLP-7721</td></tr>
+            <tr><td>País de origen</td><td>EUA</td></tr>
+            <tr><td>Fecha instalación</td><td>Feb 2019</td></tr>
+            <tr><td>Ubicación</td><td>Área Troquelado · Est. T-01</td></tr>
+            <tr><td>Responsable</td><td>Gerente de Mantenimiento</td></tr>
+          </table>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header"><div class="card-title">Sistema de seguridad</div></div>
+        <div class="card-body" style="padding:0">
+          <table class="spec-table">
+            <tr><td>Cortina de luz</td><td>SICK C4000 · 2 niveles</td></tr>
+            <tr><td>Control bimanual</td><td>Cat. 4 · ISO 13849</td></tr>
+            <tr><td>Relé de seguridad</td><td>Pilz PNOZ XV2</td></tr>
+            <tr><td>Paro de emergencia</td><td>3 estaciones · Cat. 0</td></tr>
+            <tr><td>Última calibración</td><td>28-Abr-2026</td></tr>
+            <tr><td>Próxima calibración</td><td>28-Oct-2026</td></tr>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- Documentos -->
+    <div class="mt-14">
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">Documentos vinculados</div>
+          <div class="qr-badge">📄 4 documentos</div>
+        </div>
+        <div class="card-body">
+          <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:10px">
+            <div style="padding:10px 12px;background:var(--dark3);border-radius:var(--r);border:1px solid var(--border)">
+              <div style="font-size:11px;color:var(--gold);margin-bottom:3px">📘 Manual de Operación</div>
+              <div style="font-size:10px;color:var(--mid)">Minster E2 · Rev. 3.1 · ES/EN</div>
+            </div>
+            <div style="padding:10px 12px;background:var(--dark3);border-radius:var(--r);border:1px solid var(--border)">
+              <div style="font-size:11px;color:var(--gold);margin-bottom:3px">🔧 Manual de Mantenimiento</div>
+              <div style="font-size:10px;color:var(--mid)">Preventivo y correctivo · OEM</div>
+            </div>
+            <div style="padding:10px 12px;background:var(--dark3);border-radius:var(--r);border:1px solid var(--border)">
+              <div style="font-size:11px;color:var(--gold);margin-bottom:3px">⚡ Diagrama Eléctrico</div>
+              <div style="font-size:10px;color:var(--mid)">Panel de control · Rev. 2.0</div>
+            </div>
+            <div style="padding:10px 12px;background:var(--dark3);border-radius:var(--r);border:1px solid var(--border)">
+              <div style="font-size:11px;color:var(--gold);margin-bottom:3px">🛡 Análisis de Riesgo</div>
+              <div style="font-size:10px;color:var(--mid)">ISO 12100 · GMD-RA-PRN-001</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ MANTENIMIENTO ══ -->
+  <div class="tab-panel" id="tab-mantenimiento">
+    <div class="alert-banner alert-ok">
+      ✓ Últimas 4 intervenciones completadas sin novedad. Próxima acción crítica en 23 días.
+    </div>
+    <div class="grid-3" style="margin-bottom:14px">
+      <div class="stat-card">
+        <div class="stat-val">23</div>
+        <div class="stat-label">Intervenciones registradas total</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-val" style="color:var(--green)">0</div>
+        <div class="stat-label">Paros no programados · 90 días</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-val" style="color:var(--yellow)">1</div>
+        <div class="stat-label">Intervención pendiente próxima</div>
+      </div>
+    </div>
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-header"><div class="card-title">Cronograma de mantenimiento</div></div>
+        <div class="card-body">
+          <div class="maint-item">
+            <div class="maint-dot-col"><div class="maint-dot badge-info" style="border-color:#3A7BD5;color:#3A7BD5">D</div><div class="maint-line"></div></div>
+            <div class="maint-content">
+              <div class="maint-header"><span class="maint-period">Diario</span><span class="maint-badge badge-info">Rutina</span></div>
+              <p class="maint-desc">Verificación visual antes de arranque.</p>
+              <ul class="maint-steps">
+                <li class="maint-step">Verificar nivel de aceite hidráulico</li>
+                <li class="maint-step">Inspeccionar cortinas de seguridad</li>
+                <li class="maint-step">Revisar presión neumática del sistema</li>
+              </ul>
+            </div>
+          </div>
+          <div class="maint-item">
+            <div class="maint-dot-col"><div class="maint-dot badge-ok" style="border-color:var(--green);color:var(--green)">S</div><div class="maint-line"></div></div>
+            <div class="maint-content">
+              <div class="maint-header"><span class="maint-period">Semanal</span><span class="maint-badge badge-ok">PM</span></div>
+              <p class="maint-desc">Lubricación y ajuste de puntos críticos.</p>
+              <ul class="maint-steps">
+                <li class="maint-step">Lubricar guías laterales con NLGI 2</li>
+                <li class="maint-step">Verificar apriete de tornillería de cigüeñal</li>
+                <li class="maint-step">Revisar estado de sellos hidráulicos</li>
+              </ul>
+            </div>
+          </div>
+          <div class="maint-item">
+            <div class="maint-dot-col"><div class="maint-dot badge-warn" style="border-color:var(--yellow);color:var(--yellow)">3M</div><div class="maint-line"></div></div>
+            <div class="maint-content">
+              <div class="maint-header"><span class="maint-period">Trimestral</span><span class="maint-badge badge-warn">Inspección</span></div>
+              <p class="maint-desc">Medición y ajuste de componentes con tolerancia.</p>
+              <ul class="maint-steps">
+                <li class="maint-step">Medir desgaste embrague/freno (mín. 7.0 mm)</li>
+                <li class="maint-step">Verificar holgura de guías (máx. 0.08 mm)</li>
+                <li class="maint-step">Inspección de cojinetes con comparador</li>
+              </ul>
+            </div>
+          </div>
+          <div class="maint-item">
+            <div class="maint-dot-col"><div class="maint-dot badge-crit" style="border-color:var(--red);color:var(--red)">6M</div></div>
+            <div class="maint-content">
+              <div class="maint-header"><span class="maint-period">Semestral</span><span class="maint-badge badge-crit">Mayor</span></div>
+              <p class="maint-desc">Cambio de aceite + recalibración de seguridad.</p>
+              <ul class="maint-steps">
+                <li class="maint-step">Cambio aceite ISO VG 46 HLP · 120 L</li>
+                <li class="maint-step">Certificación sistema SICK + Pilz (IATF)</li>
+                <li class="maint-step">Cambio de cojinetes de cigüeñal lado operador</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header"><div class="card-title">Historial de intervenciones</div></div>
+        <div class="card-body" style="padding:0">
+          <table class="maint-table">
+            <thead><tr><th>Fecha</th><th>Tipo</th><th>Descripción</th><th>Estatus</th></tr></thead>
+            <tbody>
+              <tr>
+                <td><span style="font-family:var(--mono);font-size:10px;color:var(--mid)">05-May-2026</span></td>
+                <td><span class="tag tag-pm">PM</span></td>
+                <td>Cambio aceite ISO VG 46 + limpieza depósito + filtro retorno</td>
+                <td><span class="tag tag-ok">✓</span></td>
+              </tr>
+              <tr>
+                <td><span style="font-family:var(--mono);font-size:10px;color:var(--mid)">28-Abr-2026</span></td>
+                <td><span class="tag tag-cal">CAL</span></td>
+                <td>Calibración SICK C4000 + relés Pilz. Certificado IATF emitido</td>
+                <td><span class="tag tag-ok">✓</span></td>
+              </tr>
+              <tr>
+                <td><span style="font-family:var(--mono);font-size:10px;color:var(--mid)">10-Abr-2026</span></td>
+                <td><span class="tag tag-pm">PM</span></td>
+                <td>Lubricación cigüeñal + guías laterales + ajuste matriz 4B</td>
+                <td><span class="tag tag-ok">✓</span></td>
+              </tr>
+              <tr>
+                <td><span style="font-family:var(--mono);font-size:10px;color:var(--mid)">22-Mar-2026</span></td>
+                <td><span class="tag tag-insp">INSP</span></td>
+                <td>Desgaste embrague/freno: 8.2 mm (mín. 7.0 mm)</td>
+                <td><span class="tag tag-ok">✓</span></td>
+              </tr>
+              <tr>
+                <td><span style="font-family:var(--mono);font-size:10px;color:var(--mid)">14-Feb-2026</span></td>
+                <td><span class="tag tag-cm">CM</span></td>
+                <td>Reemplazo válvula alivio hidráulico por fuga. Paro 4 hrs.</td>
+                <td><span class="tag tag-ok">✓</span></td>
+              </tr>
+              <tr>
+                <td><span style="font-family:var(--mono);font-size:10px;color:var(--mid)">09-Nov-2025</span></td>
+                <td><span class="tag tag-pm">PM</span></td>
+                <td>Cambio cojinetes cigüeñal lado operador + alineación</td>
+                <td><span class="tag tag-ok">✓</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ PRÓXIMAS INTERVENCIONES ══ -->
+  <div class="tab-panel" id="tab-proximos">
+    <div class="section-title">Intervenciones programadas</div>
+    <div class="card">
+      <div class="card-body">
+        <div class="upcoming-item">
+          <div class="upcoming-days days-warn"><div class="d-num">23</div><div class="d-unit">días</div></div>
+          <div class="upcoming-info">
+            <div class="upcoming-title">Inspección embrague/freno <span class="tag tag-pm" style="margin-left:6px">PM</span></div>
+            <div class="upcoming-detail">Medición de espesor de pastillas. Límite mínimo: 7.0 mm. Última medición: 8.2 mm (22-Mar). Coordinar ventana de paro con producción — tiempo estimado: 3 hrs. Requiere calibrador y comparador de carátula.</div>
+          </div>
+        </div>
+        <div class="upcoming-item">
+          <div class="upcoming-days days-ok"><div class="d-num">59</div><div class="d-unit">días</div></div>
+          <div class="upcoming-info">
+            <div class="upcoming-title">Cambio filtros hidráulicos <span class="tag tag-pm" style="margin-left:6px">PM</span></div>
+            <div class="upcoming-detail">Filtro retorno y filtro de presión. Mantener 2 juegos en stock. Tiempo estimado: 1.5 hrs.</div>
+          </div>
+        </div>
+        <div class="upcoming-item">
+          <div class="upcoming-days days-ok"><div class="d-num">90</div><div class="d-unit">días</div></div>
+          <div class="upcoming-info">
+            <div class="upcoming-title">Lubricación mayor guías laterales <span class="tag tag-pm" style="margin-left:6px">PM</span></div>
+            <div class="upcoming-detail">Medición de holgura en guías (máx. 0.08 mm). Lubricación con grasa NLGI 2. Verificación de paralelismo de mesa. Tiempo estimado: 4 hrs.</div>
+          </div>
+        </div>
+        <div class="upcoming-item">
+          <div class="upcoming-days days-ok"><div class="d-num">163</div><div class="d-unit">días</div></div>
+          <div class="upcoming-info">
+            <div class="upcoming-title">Recalibración sistema de seguridad <span class="tag tag-cal" style="margin-left:6px">CAL</span></div>
+            <div class="upcoming-detail">Certificación semestral IATF. Coordinación con SICK México y GMD. Tiempo estimado: 6 hrs.</div>
+          </div>
+        </div>
+        <div class="upcoming-item">
+          <div class="upcoming-days days-ok"><div class="d-num">185</div><div class="d-unit">días</div></div>
+          <div class="upcoming-info">
+            <div class="upcoming-title">Cambio de aceite hidráulico <span class="tag tag-pm" style="margin-left:6px">PM</span></div>
+            <div class="upcoming-detail">ISO VG 46 HLP · 120 litros. Incluye limpieza de depósito y sustitución de todos los filtros. Tiempo estimado: 6 hrs.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ COMPONENTES CRÍTICOS ══ -->
+  <div class="tab-panel" id="tab-criticos">
+    <div class="section-title">Índice de criticidad por componente — Método GMD</div>
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-header"><div class="card-title">Criticidad operativa</div></div>
+        <div class="card-body">
+          <div class="comp-item"><div class="crit-bar-wrap"><div class="crit-label"><span class="crit-name">Embrague / Freno</span><span class="crit-pct" style="color:var(--red)">Crítico · 87%</span></div><div class="crit-bar"><div class="crit-fill" style="width:87%;background:var(--red)"></div></div></div></div>
+          <div class="comp-item"><div class="crit-bar-wrap"><div class="crit-label"><span class="crit-name">Sistema Hidráulico</span><span class="crit-pct" style="color:var(--yellow)">Alto · 74%</span></div><div class="crit-bar"><div class="crit-fill" style="width:74%;background:var(--yellow)"></div></div></div></div>
+          <div class="comp-item"><div class="crit-bar-wrap"><div class="crit-label"><span class="crit-name">Sistema de Seguridad</span><span class="crit-pct" style="color:var(--yellow)">Alto · 70%</span></div><div class="crit-bar"><div class="crit-fill" style="width:70%;background:var(--yellow)"></div></div></div></div>
+          <div class="comp-item"><div class="crit-bar-wrap"><div class="crit-label"><span class="crit-name">Cigüeñal y cojinetes</span><span class="crit-pct" style="color:var(--yellow)">Alto · 65%</span></div><div class="crit-bar"><div class="crit-fill" style="width:65%;background:var(--yellow)"></div></div></div></div>
+          <div class="comp-item"><div class="crit-bar-wrap"><div class="crit-label"><span class="crit-name">Guías laterales</span><span class="crit-pct" style="color:var(--blue)">Medio · 48%</span></div><div class="crit-bar"><div class="crit-fill" style="width:48%;background:var(--blue)"></div></div></div></div>
+          <div class="comp-item"><div class="crit-bar-wrap"><div class="crit-label"><span class="crit-name">Motor principal</span><span class="crit-pct" style="color:var(--blue)">Medio · 38%</span></div><div class="crit-bar"><div class="crit-fill" style="width:38%;background:var(--blue)"></div></div></div></div>
+          <div class="comp-item"><div class="crit-bar-wrap"><div class="crit-label"><span class="crit-name">Panel de control / PLC</span><span class="crit-pct" style="color:var(--green)">Bajo · 22%</span></div><div class="crit-bar"><div class="crit-fill" style="width:22%;background:var(--green)"></div></div></div></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header"><div class="card-title">Stock de refacciones críticas</div></div>
+        <div class="card-body" style="padding:0">
+          <table class="maint-table">
+            <thead><tr><th>Refacción</th><th>Stock</th><th>Mín.</th></tr></thead>
+            <tbody>
+              <tr><td>Pastillas embrague/freno</td><td style="color:var(--green)">2 juegos</td><td>1 juego</td></tr>
+              <tr><td>Filtro hidráulico retorno</td><td style="color:var(--green)">3 pzas</td><td>2 pzas</td></tr>
+              <tr><td>Filtro hidráulico presión</td><td style="color:var(--yellow)">1 pza</td><td>2 pzas</td></tr>
+              <tr><td>Válvula alivio hidráulica</td><td style="color:var(--red)">0 pzas ⚠</td><td>1 pza</td></tr>
+              <tr><td>Sello cilindro principal</td><td style="color:var(--green)">1 kit</td><td>1 kit</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ MANUALES ══ -->
+  <div class="tab-panel" id="tab-manuales">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;flex-wrap:wrap;gap:8px">
+      <div style="font-family:var(--font-h);font-size:18px;font-weight:700;color:var(--white)">Documentación técnica</div>
+      <div class="qr-badge">4 archivos vinculados</div>
+    </div>
+    <div class="manual-grid">
+      <div class="manual-card">
+        <div class="manual-icon">📘<span class="manual-type">PDF</span></div>
+        <div class="manual-name">Manual de Operación</div>
+        <div class="manual-meta">Minster E2 · Rev. 3.1 · ES/EN</div>
+        <button class="manual-dl">⬇ Descargar</button>
+      </div>
+      <div class="manual-card">
+        <div class="manual-icon">🔧<span class="manual-type">PDF</span></div>
+        <div class="manual-name">Manual de Mantenimiento</div>
+        <div class="manual-meta">Preventivo y correctivo · OEM</div>
+        <button class="manual-dl">⬇ Descargar</button>
+      </div>
+      <div class="manual-card">
+        <div class="manual-icon">⚡<span class="manual-type">PDF</span></div>
+        <div class="manual-name">Diagrama Eléctrico</div>
+        <div class="manual-meta">Panel de control · Rev. 2.0</div>
+        <button class="manual-dl">⬇ Descargar</button>
+      </div>
+      <div class="manual-card">
+        <div class="manual-icon">🛡<span class="manual-type">PDF</span></div>
+        <div class="manual-name">Análisis de Riesgo</div>
+        <div class="manual-meta">ISO 12100 · GMD-RA-PRN-001</div>
+        <button class="manual-dl">⬇ Descargar</button>
+      </div>
+      <div class="manual-card" style="border:2px dashed var(--border2);background:var(--dark)" onclick="document.getElementById('manualUpload').click()">
+        <div class="manual-icon" style="font-size:24px;opacity:.4">＋</div>
+        <div class="manual-name" style="color:var(--dim)">Subir documento</div>
+        <div class="manual-meta">PDF · DOC · XLS · MP4</div>
+        <input type="file" id="manualUpload" style="display:none" accept=".pdf,.doc,.docx,.xls,.xlsx,.mp4"/>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ VISOR 3D ══ -->
+  <div class="tab-panel" id="tab-visor3d">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;flex-wrap:wrap;gap:8px">
+      <div style="font-family:var(--font-h);font-size:18px;font-weight:700;color:var(--white)">Visor 3D / STL</div>
+      <button class="btn-primary" onclick="document.getElementById('stlFile').click()" style="font-size:11px;padding:7px 16px">📂 Cargar STL</button>
+    </div>
+    <div class="viewer-wrap">
+      <div class="viewer-toolbar">
+        <span class="viewer-title" id="stlFileName">Sin archivo cargado</span>
+        <button class="viewer-btn" onclick="toggleWireframe()">Sólido / Alambre</button>
+        <button class="viewer-btn" onclick="resetCamera()">⟳ Centrar</button>
+        <button class="viewer-btn" onclick="toggleFS()">⤢</button>
+      </div>
+      <div id="stl-canvas">
+        <canvas id="threeCanvas"></canvas>
+        <div id="stlPlaceholder" style="text-align:center;color:rgba(255,255,255,.35);pointer-events:none;position:relative;z-index:2;padding:20px">
+          <div style="font-size:clamp(44px,10vw,64px);margin-bottom:10px">🧊</div>
+          <div style="font-family:var(--font-h);font-size:clamp(13px,3vw,16px);font-weight:700;letter-spacing:.1em;margin-bottom:5px;color:var(--gold)">VISOR 3D LISTO</div>
+          <div style="font-size:11px">Arrastra un archivo .STL o usa el botón</div>
+        </div>
+        <div class="viewer-hint" id="viewerHint" style="display:none"><span>🖱 Rotar</span><span>⚙ Zoom</span></div>
+      </div>
+      <div class="viewer-info">
+        <div class="vinfo-item"><strong id="stlTriCount">—</strong>Triángulos</div>
+        <div class="vinfo-item"><strong id="stlVolume">—</strong>Volumen</div>
+        <div class="vinfo-item"><strong id="stlDimX">—</strong>X</div>
+        <div class="vinfo-item"><strong id="stlDimY">—</strong>Y</div>
+        <div class="vinfo-item"><strong id="stlDimZ">—</strong>Z</div>
+      </div>
+    </div>
+    <input type="file" id="stlFile" accept=".stl" style="display:none"/>
+  </div>
+
+  <!-- ══ CONTACTOS ══ -->
+  <div class="tab-panel" id="tab-contactos">
+    <div class="section-title">Contactos de operación y soporte</div>
+    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:10px">
+      <div class="contact-card">
+        <div class="contact-icon">🔧</div>
+        <div>
+          <div class="contact-name">Técnico de Mantenimiento A</div>
+          <div class="contact-role">Mantenimiento preventivo · Turno A</div>
+          <div class="contact-info">Ext. 4231 &nbsp;·&nbsp; +52 444 XXX XXXX</div>
+        </div>
+      </div>
+      <div class="contact-card">
+        <div class="contact-icon">🔧</div>
+        <div>
+          <div class="contact-name">Técnico de Mantenimiento B</div>
+          <div class="contact-role">Mantenimiento correctivo · Turno B</div>
+          <div class="contact-info">Ext. 4232 &nbsp;·&nbsp; +52 444 XXX XXXX</div>
+        </div>
+      </div>
+      <div class="contact-card">
+        <div class="contact-icon">👷</div>
+        <div>
+          <div class="contact-name">Gerente de Mantenimiento</div>
+          <div class="contact-role">Autorización de paro · Decisión de planta</div>
+          <div class="contact-info">Ext. 4200 &nbsp;·&nbsp; +52 444 XXX XXXX</div>
+        </div>
+      </div>
+      <div class="contact-card">
+        <div class="contact-icon">🏭</div>
+        <div>
+          <div class="contact-name">Minster Machine Co.</div>
+          <div class="contact-role">Soporte OEM · Refacciones originales</div>
+          <div class="contact-info">+1 937 XXX XXXX &nbsp;·&nbsp; parts@minster.com</div>
+        </div>
+      </div>
+      <div class="contact-card">
+        <div class="contact-icon">🛡</div>
+        <div>
+          <div class="contact-name">SICK México</div>
+          <div class="contact-role">Soporte sistema seguridad · Certificación</div>
+          <div class="contact-info">+52 55 XXXX XXXX &nbsp;·&nbsp; soporte@sick.com.mx</div>
+        </div>
+      </div>
+      <div class="contact-card" style="border-color:var(--gold-dim);background:#1A1508">
+        <div class="contact-icon" style="border-color:var(--gold-dim);background:#2A1E08">⚙</div>
+        <div>
+          <div class="contact-name" style="color:var(--gold)">DI Jorge Vallejo · GMD</div>
+          <div class="contact-role">Ingeniería de soporte · Control técnico GMD</div>
+          <div class="contact-info">+52 4444 148560 &nbsp;·&nbsp; geomechanicaldesign@gmail.com</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ AGREGAR ══ -->
+  <div class="tab-panel" id="tab-agregar">
+    <div style="margin-bottom:16px">
+      <div style="font-family:var(--font-h);font-size:18px;font-weight:700;color:var(--white)">Registrar nuevo activo</div>
+      <div style="font-size:11px;color:var(--dim);margin-top:4px">Completa la información para generar un nuevo Pasaporte Técnico</div>
+    </div>
+    <div class="card">
+      <div class="card-body">
+
+        <div class="form-section">
+          <div class="form-section-title">Identificación del equipo</div>
+          <div class="form-grid">
+            <div class="field"><label>Nombre del equipo *</label><input type="text" placeholder="Ej: Prensa Troqueladora 200T" id="fName"/></div>
+            <div class="field"><label>ID Activo / SKU *</label><input type="text" placeholder="Ej: PRN-002" id="fSku"/></div>
+            <div class="field"><label>Fabricante</label><input type="text" placeholder="Ej: Minster, Schuler, Aida" id="fBrand"/></div>
+            <div class="field"><label>Modelo</label><input type="text" placeholder="Ej: E2-200" id="fModelo"/></div>
+            <div class="field"><label>Número de serie</label><input type="text" placeholder="Ej: MST-2019-SLP-8821" id="fSerie"/></div>
+            <div class="field"><label>Año de fabricación</label><input type="text" placeholder="Ej: 2019" id="fAnio"/></div>
+            <div class="field full"><label>Ubicación en planta</label><input type="text" placeholder="Área · Línea · Estación" id="fUbicacion"/></div>
+          </div>
+        </div>
+
+        <div class="form-section">
+          <div class="form-section-title">Parámetros de operación</div>
+          <div class="form-grid">
+            <div class="field"><label>Capacidad nominal</label><input type="text" placeholder="Ej: 200 ton" id="fCapacidad"/></div>
+            <div class="field"><label>Potencia motor</label><input type="text" placeholder="Ej: 22 kW / 30 HP" id="fPotencia"/></div>
+            <div class="field"><label>Velocidad operación</label><input type="text" placeholder="Ej: 20–50 SPM" id="fVelocidad"/></div>
+            <div class="field"><label>Tensión eléctrica</label><input type="text" placeholder="Ej: 480V / 60Hz / 3F" id="fTension"/></div>
+            <div class="field full"><label>Especificaciones adicionales</label><input type="text" placeholder="Carrera, área de mesa, peso, certificaciones..." id="fSpecs"/></div>
+          </div>
+        </div>
+
+        <div class="form-section">
+          <div class="form-section-title">Archivos del equipo</div>
+          <div class="form-grid">
+            <div>
+              <p style="font-size:10px;font-weight:600;color:var(--dim);text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px">Foto del equipo</p>
+              <div class="drop-area" onclick="document.getElementById('imgFile').click()">
+                <div class="drop-area-icon">📷</div>
+                <div class="drop-area-text"><strong>Clic</strong> o arrastra · PNG / JPG</div>
+                <input type="file" id="imgFile" accept="image/*" style="display:none" onchange="handleImgUpload(this)"/>
+              </div>
+              <div id="imgPreview" style="display:none;margin-top:8px"></div>
+            </div>
+            <div>
+              <p style="font-size:10px;font-weight:600;color:var(--dim);text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px">Archivo 3D / STL</p>
+              <div class="drop-area" onclick="document.getElementById('stlFile2').click()">
+                <div class="drop-area-icon">🧊</div>
+                <div class="drop-area-text"><strong>Clic</strong> o arrastra · .STL / .OBJ</div>
+                <input type="file" id="stlFile2" accept=".stl,.obj" style="display:none" onchange="handleStlUpload(this)"/>
+              </div>
+              <div id="stlPreviewName" style="display:none;margin-top:8px;font-size:11px;color:var(--gold)"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-section">
+          <div class="form-section-title">Notas técnicas</div>
+          <div class="field full">
+            <label>Observaciones, condición actual, historial relevante</label>
+            <textarea placeholder="Describe condición actual del equipo, modificaciones realizadas, observaciones de operación..." id="fNotas" style="min-height:90px"></textarea>
+          </div>
+        </div>
+
+        <div class="form-actions">
+          <button class="btn-ghost" onclick="clearForm()">Limpiar</button>
+          <button class="btn-primary" onclick="saveProduct()">💾 Guardar activo</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<div class="page-footer">
+  <div class="footer-gmd">Pasaporte Técnico gestionado por <strong>GMD Engineering Solutions</strong> · San Luis Potosí, México</div>
+  <div class="footer-ts">DEMO-PRN-001 &nbsp;·&nbsp; v1.0 &nbsp;·&nbsp; Jun 2026</div>
+</div>
+
+<div class="success-toast" id="successToast"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+/* ── TABS ── */
+document.querySelectorAll('.tab-btn').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+    document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('tab-'+btn.dataset.tab).classList.add('active');
+    btn.scrollIntoView({behavior:'smooth',block:'nearest',inline:'center'});
+  });
+});
+
+/* ── HERO FOTO ── */
+document.getElementById('heroImgInput').addEventListener('change',function(){
+  if(!this.files[0])return;
+  const r=new FileReader();
+  r.onload=e=>{
+    const img=document.getElementById('heroImg');
+    img.src=e.target.result;img.style.display='block';
+    document.getElementById('heroPlaceholder').style.display='none';
+    const hbg=document.getElementById('hotspotBg');
+    hbg.src=e.target.result;hbg.style.display='block';
+    document.getElementById('hotspotEmoji').style.display='none';
+  };
+  r.readAsDataURL(this.files[0]);
+});
+
+/* ── HOTSPOTS ── */
+function toggleHotspot(el){
+  if(window.innerWidth>680)return;
+  el.classList.toggle('open');
+  document.querySelectorAll('.hotspot').forEach(h=>{if(h!==el)h.classList.remove('open');});
+}
+
+/* ── THREE.JS STL VIEWER ── */
+let scene,camera,renderer,mesh,isWireframe=false;
+let isDragging=false,prevMouse={x:0,y:0},rotX=0,rotY=0;
+let touchStart={x:0,y:0},touchDist=0;
+
+function initThree(){
+  const canvas=document.getElementById('threeCanvas');
+  const cont=document.getElementById('stl-canvas');
+  const W=cont.clientWidth,H=cont.clientHeight||380;
+  scene=new THREE.Scene();
+  camera=new THREE.PerspectiveCamera(45,W/H,0.01,10000);
+  camera.position.set(0,0,5);
+  renderer=new THREE.WebGLRenderer({canvas,antialias:true,alpha:true});
+  renderer.setSize(W,H);renderer.setPixelRatio(Math.min(devicePixelRatio,2));
+  renderer.setClearColor(0x000000,0);
+  scene.add(new THREE.AmbientLight(0xffffff,0.5));
+  const d1=new THREE.DirectionalLight(0xffffff,0.8);d1.position.set(1,2,3);scene.add(d1);
+  const d2=new THREE.DirectionalLight(0xD4A745,0.3);d2.position.set(-2,-1,-2);scene.add(d2);
+  renderer.render(scene,camera);
+}
+
+function animate(){requestAnimationFrame(animate);if(mesh)renderer.render(scene,camera);}
+
+function loadSTL(buffer){
+  if(mesh){scene.remove(mesh);mesh=null;}
+  document.getElementById('stlPlaceholder').style.display='none';
+  document.getElementById('viewerHint').style.display='flex';
+  const geo=parseSTL(buffer);
+  geo.computeVertexNormals();geo.computeBoundingBox();
+  const bbox=geo.boundingBox,center=new THREE.Vector3();
+  bbox.getCenter(center);geo.translate(-center.x,-center.y,-center.z);
+  const size=new THREE.Vector3();bbox.getSize(size);
+  const s=4/Math.max(size.x,size.y,size.z);geo.scale(s,s,s);
+  mesh=new THREE.Mesh(geo,new THREE.MeshPhongMaterial({color:0xD4A745,specular:0xE8C56A,shininess:60,side:THREE.DoubleSide}));
+  scene.add(mesh);camera.position.set(0,0,5);rotX=0;rotY=0;
+  const tris=geo.attributes.position.count/3;
+  document.getElementById('stlTriCount').textContent=tris.toLocaleString();
+  document.getElementById('stlDimX').textContent=size.x.toFixed(1)+'mm';
+  document.getElementById('stlDimY').textContent=size.y.toFixed(1)+'mm';
+  document.getElementById('stlDimZ').textContent=size.z.toFixed(1)+'mm';
+  document.getElementById('stlVolume').textContent=(size.x*size.y*size.z/1000).toFixed(1)+' cm³';
+  animate();
+}
+
+function parseSTL(buffer){
+  const geo=new THREE.BufferGeometry(),view=new DataView(buffer);
+  let bin=false;
+  if(buffer.byteLength>=84){const n=view.getUint32(80,true);if(84+n*50===buffer.byteLength)bin=true;}
+  if(bin){
+    const n=view.getUint32(80,true),v=new Float32Array(n*9);let o=84,vi=0;
+    for(let i=0;i<n;i++,o+=50)for(let j=0;j<3;j++){v[vi++]=view.getFloat32(o+12+j*12,true);v[vi++]=view.getFloat32(o+12+j*12+4,true);v[vi++]=view.getFloat32(o+12+j*12+8,true);}
+    geo.setAttribute('position',new THREE.BufferAttribute(v,3));
+  }else{
+    const t=new TextDecoder().decode(buffer),v=[];
+    const re=/vertex\s+([\d.eE+\-]+)\s+([\d.eE+\-]+)\s+([\d.eE+\-]+)/g;let m;
+    while((m=re.exec(t))!==null)v.push(+m[1],+m[2],+m[3]);
+    geo.setAttribute('position',new THREE.BufferAttribute(new Float32Array(v),3));
+  }
+  return geo;
+}
+
+const cvs=document.getElementById('stl-canvas');
+cvs.addEventListener('mousedown',e=>{isDragging=true;prevMouse={x:e.clientX,y:e.clientY}});
+window.addEventListener('mouseup',()=>isDragging=false);
+window.addEventListener('mousemove',e=>{
+  if(!isDragging||!mesh)return;
+  rotY+=(e.clientX-prevMouse.x)*0.008;rotX+=(e.clientY-prevMouse.y)*0.008;
+  mesh.rotation.y=rotY;mesh.rotation.x=rotX;prevMouse={x:e.clientX,y:e.clientY};
+  renderer.render(scene,camera);
+});
+cvs.addEventListener('wheel',e=>{if(!mesh)return;e.preventDefault();camera.position.z=Math.max(0.5,camera.position.z+e.deltaY*0.005);renderer.render(scene,camera);},{passive:false});
+cvs.addEventListener('touchstart',e=>{if(e.touches.length===1){touchStart={x:e.touches[0].clientX,y:e.touches[0].clientY};isDragging=true;}if(e.touches.length===2){touchDist=Math.hypot(e.touches[0].clientX-e.touches[1].clientX,e.touches[0].clientY-e.touches[1].clientY);}},{passive:true});
+cvs.addEventListener('touchend',()=>{isDragging=false;},{passive:true});
+cvs.addEventListener('touchmove',e=>{
+  e.preventDefault();if(!mesh)return;
+  if(e.touches.length===1&&isDragging){rotY+=(e.touches[0].clientX-touchStart.x)*0.008;rotX+=(e.touches[0].clientY-touchStart.y)*0.008;mesh.rotation.y=rotY;mesh.rotation.x=rotX;touchStart={x:e.touches[0].clientX,y:e.touches[0].clientY};renderer.render(scene,camera);}
+  if(e.touches.length===2){const d=Math.hypot(e.touches[0].clientX-e.touches[1].clientX,e.touches[0].clientY-e.touches[1].clientY);camera.position.z=Math.max(0.5,camera.position.z-(d-touchDist)*0.01);touchDist=d;renderer.render(scene,camera);}
+},{passive:false});
+
+cvs.addEventListener('dragover',e=>e.preventDefault());
+cvs.addEventListener('drop',e=>{
+  e.preventDefault();const f=e.dataTransfer.files[0];
+  if(f&&f.name.endsWith('.stl')){document.getElementById('stlFileName').textContent=f.name;f.arrayBuffer().then(buf=>{if(!renderer)initThree();loadSTL(buf);});}
+});
+document.getElementById('stlFile').addEventListener('change',function(){
+  if(!this.files[0])return;
+  document.getElementById('stlFileName').textContent=this.files[0].name;
+  this.files[0].arrayBuffer().then(buf=>{if(!renderer)initThree();loadSTL(buf);});
+});
+
+function toggleWireframe(){if(!mesh)return;isWireframe=!isWireframe;mesh.material.wireframe=isWireframe;renderer.render(scene,camera);}
+function resetCamera(){if(!mesh)return;rotX=0;rotY=0;mesh.rotation.set(0,0,0);camera.position.set(0,0,5);renderer.render(scene,camera);}
+function toggleFS(){const el=document.getElementById('tab-visor3d');if(!document.fullscreenElement)el.requestFullscreen();else document.exitFullscreen();}
+
+/* ── FORM ── */
+function handleImgUpload(input){
+  if(!input.files[0])return;
+  const r=new FileReader();
+  r.onload=e=>{const p=document.getElementById('imgPreview');p.innerHTML=`<img src="${e.target.result}" style="max-height:90px;border-radius:var(--r);border:1px solid var(--border)"/>`;p.style.display='block';};
+  r.readAsDataURL(input.files[0]);
+}
+function handleStlUpload(input){
+  if(!input.files[0])return;
+  const el=document.getElementById('stlPreviewName');
+  el.textContent='🧊 '+input.files[0].name+' ('+((input.files[0].size/1024/1024).toFixed(1))+' MB)';
+  el.style.display='block';
+}
+function clearForm(){
+  ['fName','fSku','fBrand','fModelo','fSerie','fAnio','fUbicacion','fCapacidad','fPotencia','fVelocidad','fTension','fSpecs','fNotas']
+    .forEach(id=>{const e=document.getElementById(id);if(e)e.value='';});
+  document.getElementById('imgPreview').style.display='none';
+  document.getElementById('stlPreviewName').style.display='none';
+}
+function saveProduct(){
+  const name=document.getElementById('fName').value.trim();
+  const sku=document.getElementById('fSku').value.trim();
+  if(!name||!sku){alert('Completa nombre e ID del activo.');return;}
+  const t=document.getElementById('successToast');
+  t.textContent=`✓ "${name}" registrado correctamente`;t.style.display='block';
+  setTimeout(()=>t.style.display='none',3000);
+  clearForm();
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
+  document.querySelector('[data-tab="descripcion"]').classList.add('active');
+  document.getElementById('tab-descripcion').classList.add('active');
+}
+
+/* ── RESIZE VISOR ── */
+window.addEventListener('resize',()=>{
+  if(!renderer)return;
+  const cont=document.getElementById('stl-canvas');
+  renderer.setSize(cont.clientWidth,cont.clientHeight);
+  camera.aspect=cont.clientWidth/cont.clientHeight;
+  camera.updateProjectionMatrix();renderer.render(scene,camera);
+});
+
+window.addEventListener('load',()=>initThree());
+</script>
+</body>
+</html>
